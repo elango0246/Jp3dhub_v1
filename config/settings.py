@@ -12,10 +12,23 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 load_dotenv(BASE_DIR / ".env")
 
 
+
+
+import os
+
+SECRET_KEY = os.environ.get("SECRET_KEY")
+
+DEBUG = os.environ.get("DEBUG", "False").lower() == "true"
+
+ALLOWED_HOSTS = [
+    host.strip()
+    for host in os.environ.get("ALLOWED_HOSTS", "").split(",")
+    if host.strip()
+]
 # --------------------------------------------------
 # SECURITY
 # --------------------------------------------------
-
+'''
 SECRET_KEY = os.environ.get(
     "SECRET_KEY",
     "dev-only-change-this-secret-key"
@@ -35,7 +48,7 @@ ALLOWED_HOSTS = [
     ).split(",")
     if host.strip()
 ]
-
+'''
 
 # --------------------------------------------------
 # APPLICATIONS
