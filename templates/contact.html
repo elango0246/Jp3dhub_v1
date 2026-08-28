@@ -1,0 +1,2 @@
+{% load static %}
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Contact | JP3DHUB</title><link rel="stylesheet" href="{% static 'css/style.css' %}"></head><body><main class="products-page"><a href="{% url 'home' %}" class="btn-outline">Back to home</a><div class="section-tag">Reach Out</div><h1 class="section-title">GET IN TOUCH</h1><form method="post">{% csrf_token %}{{ form.as_p }}<button class="btn-primary" type="submit">Send Message</button></form></main></body></html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JP3DHUB Admin Login</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Rajdhani', sans-serif; background: linear-gradient(135deg, #050508 0%, #0d0d14 100%); min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+        .login-container { background: rgba(13,13,20,0.95); backdrop-filter: blur(10px); border: 1px solid rgba(255,77,0,0.2); border-radius: 20px; padding: 40px; width: 100%; max-width: 450px; box-shadow: 0 20px 60px rgba(0,0,0,0.5); }
+        .logo { font-family: 'Bebas Neue', sans-serif; font-size: 2.5rem; text-align: center; color: #fff; margin-bottom: 30px; }
+        .logo span { color: #ff4d00; }
+        h1 { color: #fff; text-align: center; margin-bottom: 30px; font-weight: 600; font-size: 1.5rem; }
+        .form-group { margin-bottom: 20px; }
+        label { display: block; color: #6b6b80; margin-bottom: 8px; font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; }
+        input { width: 100%; padding: 12px 15px; background: #13131e; border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: #fff; font-size: 1rem; }
+        input:focus { outline: none; border-color: #ff4d00; }
+        button { width: 100%; padding: 12px; background: #ff4d00; color: #fff; border: none; border-radius: 8px; font-size: 1rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; cursor: pointer; }
+        button:hover { background: #ff8c42; }
+        .error-message { background: rgba(255,0,0,0.1); border-left: 3px solid #ff0000; padding: 10px; margin-bottom: 20px; color: #ff6666; font-size: 0.9rem; }
+    </style>
+</head>
+<body>
+    <main class="login-container">
+        <div class="logo">JP<span>3DHUB</span></div>
+        <h1>Admin Login</h1>
+        {% if form.errors %}<div class="error-message">Please enter a valid username and password.</div>{% endif %}
+        <form method="post" action="{{ app_path }}">
+            {% csrf_token %}
+            <input type="hidden" name="next" value="{{ next }}">
+            <div class="form-group">
+                <label for="id_username">Username</label>
+                <input type="text" name="username" id="id_username" placeholder="admin" required autofocus>
+            </div>
+            <div class="form-group">
+                <label for="id_password">Password</label>
+                <input type="password" name="password" id="id_password" placeholder="Enter your password" required>
+            </div>
+            <button type="submit">Login</button>
+        </form>
+    </main>
+</body>
+</html>

@@ -1,0 +1,125 @@
+/* static/css/admin-themes.css */
+/* Admin Dashboard Theme System */
+
+/* Admin Theme Variables */
+.admin-theme-neon {
+    --admin-bg: #0d0d14;
+    --admin-sidebar: #050508;
+    --admin-card: #13131e;
+    --admin-text: #e8e8f0;
+    --admin-accent: #ff4d00;
+    --admin-accent-hover: #ff8c42;
+    --admin-border: rgba(255,255,255,0.06);
+}
+
+.admin-theme-purple {
+    --admin-bg: #12122a;
+    --admin-sidebar: #0a0a1a;
+    --admin-card: #1a1a35;
+    --admin-text: #f0f0ff;
+    --admin-accent: #9b59b6;
+    --admin-accent-hover: #e74c9c;
+    --admin-border: rgba(155,89,182,0.2);
+}
+
+.admin-theme-ocean {
+    --admin-bg: #0f1f3a;
+    --admin-sidebar: #0a1628;
+    --admin-card: #15284a;
+    --admin-text: #e8f4f8;
+    --admin-accent: #00bcd4;
+    --admin-accent-hover: #4dd0e1;
+    --admin-border: rgba(0,188,212,0.2);
+}
+
+.admin-theme-dark-matter {
+    --admin-bg: #000000;
+    --admin-sidebar: #0a0a0a;
+    --admin-card: #111111;
+    --admin-text: #ffffff;
+    --admin-accent: #ff3366;
+    --admin-accent-hover: #ff6633;
+    --admin-border: rgba(255,255,255,0.1);
+}
+
+/* Apply Admin Themes */
+.admin-body {
+    background: var(--admin-bg);
+    color: var(--admin-text);
+}
+
+.admin-sidebar {
+    background: var(--admin-sidebar);
+    border-right: 1px solid var(--admin-border);
+}
+
+.admin-card {
+    background: var(--admin-card);
+    border: 1px solid var(--admin-border);
+    border-radius: 12px;
+}
+
+.admin-card:hover {
+    border-color: var(--admin-accent);
+    transform: translateY(-2px);
+}
+
+.admin-btn-primary {
+    background: var(--admin-accent);
+    color: white;
+}
+
+.admin-btn-primary:hover {
+    background: var(--admin-accent-hover);
+}
+
+.admin-btn-danger {
+    background: rgba(255,0,0,0.2);
+    color: #ff6666;
+}
+
+.admin-btn-danger:hover {
+    background: rgba(255,0,0,0.4);
+}
+
+/* Theme Switcher Styles */
+.theme-switcher {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 10000;
+    background: var(--bg-tertiary);
+    border-radius: 50px;
+    padding: 8px;
+    display: flex;
+    gap: 8px;
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border-color);
+}
+
+.theme-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.theme-btn:hover {
+    transform: scale(1.1);
+}
+
+.theme-btn.active {
+    border-color: var(--accent-primary);
+    transform: scale(1.1);
+}
+
+.theme-btn[data-theme="neon"] { background: linear-gradient(135deg, #ff4d00, #ff8c42); }
+.theme-btn[data-theme="purple"] { background: linear-gradient(135deg, #9b59b6, #e74c9c); }
+.theme-btn[data-theme="ocean"] { background: linear-gradient(135deg, #00bcd4, #4dd0e1); }
+.theme-btn[data-theme="forest"] { background: linear-gradient(135deg, #4caf50, #8bc34a); }
+.theme-btn[data-theme="sunset"] { background: linear-gradient(135deg, #ff6b35, #ff9f4a); }
+.theme-btn[data-theme="dark-matter"] { background: linear-gradient(135deg, #ff3366, #ff6633); }
+.theme-btn[data-theme="cosmic"] { background: linear-gradient(135deg, #3a86ff, #8338ec); }
+.theme-btn[data-theme="gold"] { background: linear-gradient(135deg, #ffd700, #ffed4a); }

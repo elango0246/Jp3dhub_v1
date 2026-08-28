@@ -1,0 +1,1 @@
+it is a 3d print website that i have the codes i wanto to make in the django and i want a admin pannel for this to add or edit the our services and material we offer and portfolio gallery we want to add the images and edit it by the admin pannel and the pricing plans will also have in the admin pannel to chage and edit and all 

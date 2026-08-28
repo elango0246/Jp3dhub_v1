@@ -1,0 +1,60 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo:7
+    container_name: blaster3d-mongo
+    restart: always
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: securepassword
+      MONGO_INITDB_DATABASE: blaster3d
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - blaster3d-network
+
+  postgres:
+    image: postgres:16
+    container_name: jp3dhub-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${DB_NAME:-blaster3d}
+      POSTGRES_USER: ${DB_USER:-postgres}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-change-me}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - blaster3d-network
+
+  backend:
+    build: .
+    container_name: blaster3d-backend
+    restart: always
+    ports:
+      - "8000:8000"
+    environment:
+      DJANGO_SETTINGS_MODULE: config.settings
+      SECRET_KEY: ${SECRET_KEY}
+      DB_NAME: ${DB_NAME:-blaster3d}
+      DB_USER: ${DB_USER:-postgres}
+      DB_PASSWORD: ${DB_PASSWORD:-change-me}
+      DB_HOST: postgres
+      DB_PORT: 5432
+    depends_on:
+      - postgres
+    volumes:
+      - ./uploads:/app/uploads
+    networks:
+      - blaster3d-network
+
+volumes:
+  postgres_data:
+
+networks:
+  blaster3d-network:
+    driver: bridge

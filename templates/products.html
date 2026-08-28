@@ -1,0 +1,8 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Products | JP3DHUB</title><link rel="stylesheet" href="{% static 'css/style.css' %}"></head>
+<body>
+<main class="products-page"><a href="{% url 'home' %}" class="btn-outline">Back to home</a><div class="section-tag">Available Prints</div><h1 class="section-title">3D PRODUCTS</h1><div class="services-grid">
+{% for product in products %}<article class="service-card"><span class="service-icon">{% if product.image %}<img src="{{ product.image.url }}" alt="{{ product.name }}" style="max-width:100%;height:180px;object-fit:cover">{% else %}3D{% endif %}</span><div class="service-name">{{ product.name }}</div><p class="service-desc">{{ product.description }}</p><p class="service-desc">₹{{ product.price }} · {{ product.material }} · {{ product.category }}</p><a href="{% url 'product_detail' product.pk %}" class="btn-primary">View Details</a></article>{% empty %}<p class="service-desc">Products will appear here after they are added in Django Admin.</p>{% endfor %}</div></main>
+</body></html>

@@ -1,0 +1,6 @@
+/* Page-specific additions. The existing homepage visual system remains inline in index.html. */
+.products-page { min-height: 100vh; padding: 8rem 5vw; background: #050508; color: #e8e8f0; }
+.products-page form { max-width: 700px; margin-top: 2rem; }
+.products-page form p { margin-bottom: 1.2rem; }
+.products-page form label { display: block; margin-bottom: .5rem; color: #6b6b80; }
+.products-page form input, .products-page form select, .products-page form textarea { width: 100%; padding: .9rem 1rem; background: #13131e; border: 1px solid rgba(255,255,255,.06); color: #fff; }

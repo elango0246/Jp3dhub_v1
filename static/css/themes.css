@@ -1,0 +1,290 @@
+/* static/css/themes.css */
+/* ============================================
+   BLASTER3D - Complete Theme System
+   ============================================ */
+
+/* Theme Variables - Default Dark Theme */
+:root {
+    /* Colors */
+    --bg-primary: #050508;
+    --bg-secondary: #0d0d14;
+    --bg-tertiary: #13131e;
+    --text-primary: #e8e8f0;
+    --text-secondary: #6b6b80;
+    --accent-primary: #ff4d00;
+    --accent-secondary: #ff8c42;
+    --accent-tertiary: #00d4ff;
+    --border-color: rgba(255,255,255,0.06);
+    --success: #00ff88;
+    --error: #ff4444;
+    --warning: #ffaa00;
+    
+    /* Effects */
+    --glow-intensity: 0.3;
+    --blur-amount: 20px;
+    --transition-speed: 0.3s;
+    
+    /* Typography */
+    --font-heading: 'Bebas Neue', sans-serif;
+    --font-body: 'Rajdhani', sans-serif;
+    --font-mono: 'Space Mono', monospace;
+}
+
+/* ============================================
+   THEME 1: NEON BLASTER (Default)
+   ============================================ */
+.theme-neon {
+    --bg-primary: #050508;
+    --bg-secondary: #0d0d14;
+    --bg-tertiary: #13131e;
+    --text-primary: #e8e8f0;
+    --text-secondary: #6b6b80;
+    --accent-primary: #ff4d00;
+    --accent-secondary: #ff8c42;
+    --accent-tertiary: #00d4ff;
+    --border-color: rgba(255,255,255,0.06);
+    --glow-intensity: 0.3;
+}
+
+/* ============================================
+   THEME 2: CYBER PURPLE
+   ============================================ */
+.theme-purple {
+    --bg-primary: #0a0a1a;
+    --bg-secondary: #12122a;
+    --bg-tertiary: #1a1a35;
+    --text-primary: #f0f0ff;
+    --text-secondary: #8a8aaa;
+    --accent-primary: #9b59b6;
+    --accent-secondary: #e74c9c;
+    --accent-tertiary: #3498db;
+    --border-color: rgba(155,89,182,0.2);
+    --glow-intensity: 0.4;
+}
+
+/* ============================================
+   THEME 3: OCEAN DEEP
+   ============================================ */
+.theme-ocean {
+    --bg-primary: #0a1628;
+    --bg-secondary: #0f1f3a;
+    --bg-tertiary: #15284a;
+    --text-primary: #e8f4f8;
+    --text-secondary: #7f9cb5;
+    --accent-primary: #00bcd4;
+    --accent-secondary: #4dd0e1;
+    --accent-tertiary: #ff6f61;
+    --border-color: rgba(0,188,212,0.2);
+    --glow-intensity: 0.35;
+}
+
+/* ============================================
+   THEME 4: FOREST GREEN
+   ============================================ */
+.theme-forest {
+    --bg-primary: #0a1a0f;
+    --bg-secondary: #0f2a15;
+    --bg-tertiary: #153a1a;
+    --text-primary: #e8f5e9;
+    --text-secondary: #8bc34a;
+    --accent-primary: #4caf50;
+    --accent-secondary: #8bc34a;
+    --accent-tertiary: #ff9800;
+    --border-color: rgba(76,175,80,0.2);
+    --glow-intensity: 0.3;
+}
+
+/* ============================================
+   THEME 5: SUNSET ORANGE
+   ============================================ */
+.theme-sunset {
+    --bg-primary: #1a0a0a;
+    --bg-secondary: #2a1515;
+    --bg-tertiary: #3a2020;
+    --text-primary: #fff0e8;
+    --text-secondary: #d4a5a5;
+    --accent-primary: #ff6b35;
+    --accent-secondary: #ff9f4a;
+    --accent-tertiary: #ff4d4d;
+    --border-color: rgba(255,107,53,0.2);
+    --glow-intensity: 0.4;
+}
+
+/* ============================================
+   THEME 6: DARK MATTER (Premium Dark)
+   ============================================ */
+.theme-dark-matter {
+    --bg-primary: #000000;
+    --bg-secondary: #0a0a0a;
+    --bg-tertiary: #111111;
+    --text-primary: #ffffff;
+    --text-secondary: #888888;
+    --accent-primary: #ff3366;
+    --accent-secondary: #ff6633;
+    --accent-tertiary: #33ff66;
+    --border-color: rgba(255,255,255,0.1);
+    --glow-intensity: 0.5;
+}
+
+/* ============================================
+   THEME 7: COSMIC BLUE
+   ============================================ */
+.theme-cosmic {
+    --bg-primary: #050b1a;
+    --bg-secondary: #0a1433;
+    --bg-tertiary: #101f4d;
+    --text-primary: #c5e0ff;
+    --text-secondary: #6b9fd4;
+    --accent-primary: #3a86ff;
+    --accent-secondary: #8338ec;
+    --accent-tertiary: #ff006e;
+    --border-color: rgba(58,134,255,0.2);
+    --glow-intensity: 0.35;
+}
+
+/* ============================================
+   THEME 8: GOLD EDITION
+   ============================================ */
+.theme-gold {
+    --bg-primary: #0a0a0a;
+    --bg-secondary: #141414;
+    --bg-tertiary: #1e1e1e;
+    --text-primary: #fff5e0;
+    --text-secondary: #c5b57a;
+    --accent-primary: #ffd700;
+    --accent-secondary: #ffed4a;
+    --accent-tertiary: #ff8c00;
+    --border-color: rgba(255,215,0,0.2);
+    --glow-intensity: 0.45;
+}
+
+/* ============================================
+   APPLY THEME VARIABLES
+   ============================================ */
+body {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+}
+
+/* Navigation */
+nav {
+    background: rgba(var(--bg-secondary), 0.8);
+    backdrop-filter: blur(var(--blur-amount));
+    border-bottom: 1px solid var(--border-color);
+}
+
+.logo span { color: var(--accent-primary); }
+
+/* Buttons */
+.btn-primary {
+    background: var(--accent-primary);
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+}
+
+.btn-primary:hover {
+    background: var(--accent-secondary);
+    box-shadow: 0 0 30px rgba(var(--accent-primary), var(--glow-intensity));
+}
+
+.btn-outline {
+    border: 1px solid var(--border-color);
+}
+
+.btn-outline:hover {
+    border-color: var(--accent-primary);
+    color: var(--accent-primary);
+}
+
+/* Section Backgrounds */
+.services, .how, .pricing, .contact {
+    background: var(--bg-secondary);
+}
+
+.service-card, .material-chip, .testimonial, .pricing-card {
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+}
+
+.service-card:hover {
+    background: var(--bg-secondary);
+}
+
+/* Accent Colors */
+.accent-text, .hero-title .accent, .stat-num span {
+    color: var(--accent-primary);
+}
+
+.section-tag, .hero-eyebrow, .contact-info-label {
+    color: var(--accent-primary);
+}
+
+.section-tag::before {
+    background: var(--accent-primary);
+}
+
+/* Glow Effects */
+.model-core {
+    box-shadow: 0 0 60px rgba(var(--accent-primary), calc(var(--glow-intensity) * 0.6));
+}
+
+.model-core:hover {
+    box-shadow: 0 0 100px rgba(var(--accent-primary), var(--glow-intensity));
+}
+
+/* Gallery Items */
+.gallery-item {
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+}
+
+.gallery-item:hover {
+    transform: scale(1.02);
+    border-color: var(--accent-primary);
+}
+
+/* Form Elements */
+.form-input {
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+}
+
+.form-input:focus {
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 10px rgba(var(--accent-primary), var(--glow-intensity));
+}
+
+/* Scrollbar Customization */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-tertiary);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--accent-primary);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-secondary);
+}
+
+/* Selection Color */
+::selection {
+    background: var(--accent-primary);
+    color: var(--text-primary);
+}
+
+/* Animations */
+@keyframes pulse-glow {
+    0%, 100% {
+        box-shadow: 0 0 20px rgba(var(--accent-primary), calc(var(--glow-intensity) * 0.5));
+    }
+    50% {
+        box-shadow: 0 0 40px rgba(var(--accent-primary), var(--glow-intensity));
+    }
+}
