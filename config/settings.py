@@ -1,3 +1,4 @@
+
 import os
 from pathlib import Path
 from dotenv import load_dotenv
@@ -13,7 +14,7 @@ load_dotenv(BASE_DIR / ".env")
 
 
 # ==================================================
-# SECURITY
+# SECURITY - TEMPORARY DEBUG MODE
 # ==================================================
 
 SECRET_KEY = os.environ.get(
@@ -21,21 +22,14 @@ SECRET_KEY = os.environ.get(
     "django-insecure-development-key-change-me"
 )
 
-DEBUG = os.environ.get(
-    "DEBUG",
-    "False"
-).lower() in ("1", "true", "yes")
+# FORCE DEBUG ON
+# TEMPORARY: Use only while debugging the Vercel error
+DEBUG = True
 
-
-# ALLOWED_HOSTS
-ALLOWED_HOSTS = [
-    host.strip()
-    for host in os.environ.get(
-        "ALLOWED_HOSTS",
-        "localhost,127.0.0.1"
-    ).split(",")
-    if host.strip()
-]
+# FORCE ALLOW ALL HOSTS
+# TEMPORARY: This helps determine whether ALLOWED_HOSTS
+# is causing the HTTP 400 error.
+ALLOWED_HOSTS = ["*"]
 
 
 # ==================================================
@@ -136,12 +130,14 @@ DATABASES = {
 
         "PORT": os.environ.get(
             "DB_PORT",
-            "5432"
+            "6543"
         ),
 
-        "CONN_MAX_AGE": 60,
+        # Serverless/Vercel
+        "CONN_MAX_AGE": 0,
 
         "OPTIONS": {
+            "sslmode": "require",
             "connect_timeout": 10,
         },
     }
@@ -233,6 +229,11 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # ==================================================
 # PRODUCTION SECURITY
 # ==================================================
+#
+# This block will NOT execute while DEBUG=True.
+# Once debugging is finished, set DEBUG=False
+# and configure production security properly.
+#
 
 if not DEBUG:
 
