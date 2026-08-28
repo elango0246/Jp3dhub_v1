@@ -210,7 +210,7 @@
   }
   .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
 
-  /* 3D Visual */
+  /* Futuristic solar-system visual */
   .hero-visual {
     position: absolute;
     right: 0;
@@ -224,38 +224,60 @@
   }
   .model-stage {
     position: relative;
-    width: 420px;
-    height: 420px;
+    width: min(520px, 42vw);
+    aspect-ratio: 1;
+    perspective: 1100px;
+    transform-style: preserve-3d;
   }
   .model-ring {
     position: absolute;
+    inset: 0;
+    border: 1px solid rgba(125, 224, 255, 0.28);
     border-radius: 50%;
-    border: 1px solid rgba(255,77,0,0.2);
-    animation: orbit linear infinite;
+    transform-style: preserve-3d;
+    box-shadow: 0 0 8px rgba(0, 212, 255, 0.16), inset 0 0 8px rgba(255, 77, 0, 0.08);
+    animation: orbit-spin linear infinite;
   }
-  .model-ring:nth-child(1) { inset: 0; animation-duration: 12s; }
-  .model-ring:nth-child(2) { inset: 30px; border-color: rgba(0,212,255,0.15); animation-duration: 18s; animation-direction: reverse; }
-  .model-ring:nth-child(3) { inset: 60px; animation-duration: 24s; }
-  @keyframes orbit { from { transform: rotateX(70deg) rotateZ(0deg); } to { transform: rotateX(70deg) rotateZ(360deg); } }
+  .model-ring:nth-child(1) { transform: rotateX(66deg) rotateY(-13deg) rotateZ(12deg); animation-duration: 22s; }
+  .model-ring:nth-child(2) { inset: 12%; border-color: rgba(255, 145, 71, 0.34); transform: rotateX(73deg) rotateY(28deg) rotateZ(-26deg); animation-duration: 17s; animation-direction: reverse; }
+  .model-ring:nth-child(3) { inset: 24%; border-color: rgba(0, 212, 255, 0.38); transform: rotateX(58deg) rotateY(-34deg) rotateZ(43deg); animation-duration: 13s; }
+  @keyframes orbit-spin { from { transform: rotateX(66deg) rotateY(-13deg) rotateZ(12deg) rotate(0deg); } to { transform: rotateX(66deg) rotateY(-13deg) rotateZ(12deg) rotate(360deg); } }
+  .solar-orbit:nth-child(2) { animation-name: orbit-spin-two; }
+  .solar-orbit:nth-child(3) { animation-name: orbit-spin-three; }
+  @keyframes orbit-spin-two { from { transform: rotateX(73deg) rotateY(28deg) rotateZ(-26deg) rotate(360deg); } to { transform: rotateX(73deg) rotateY(28deg) rotateZ(-26deg) rotate(0deg); } }
+  @keyframes orbit-spin-three { from { transform: rotateX(58deg) rotateY(-34deg) rotateZ(43deg) rotate(0deg); } to { transform: rotateX(58deg) rotateY(-34deg) rotateZ(43deg) rotate(360deg); } }
+  .planet-track { position: absolute; top: 50%; left: 50%; width: 0; height: 0; transform-style: preserve-3d; }
+  .planet { --planet-color: #00d4ff; position: absolute; top: 0; left: 0; width: 14px; aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle at 30% 25%, #fff 0 8%, var(--planet-color) 34%, #07121d 100%); box-shadow: 0 0 6px var(--planet-color), 0 0 18px var(--planet-color), 0 0 32px rgba(255,255,255,0.18); transform: translate3d(0, 0, 0) scale(var(--planet-scale, 1)); transform-origin: center; will-change: transform, opacity; }
+  .planet--orange { --planet-color: #ff9147; width: 18px; }
+  .planet--violet { --planet-color: #b68cff; width: 11px; }
+  .planet--small { width: 8px; }
+  .planet--with-moon::after { content: ''; position: absolute; top: -7px; left: -7px; width: 28px; height: 28px; border: 1px solid rgba(255,255,255,0.22); border-radius: 50%; transform: rotate(-18deg) scaleY(0.42); }
+  .star-particle { position: absolute; width: 3px; height: 3px; border-radius: 50%; background: #d8f8ff; box-shadow: 0 0 7px 1px rgba(0, 212, 255, 0.65); animation: star-twinkle 3.5s ease-in-out infinite; }
+  .star-particle:nth-child(2n) { background: #ffb477; animation-delay: -1.7s; }
+  .star-particle:nth-child(3n) { width: 2px; height: 2px; animation-duration: 5s; }
+  @keyframes star-twinkle { 0%, 100% { opacity: 0.25; transform: scale(0.7); } 50% { opacity: 0.9; transform: scale(1.35); } }
   .model-core {
     position: absolute;
     top: 50%; left: 50%;
     transform: translate(-50%, -50%);
-    width: 160px; height: 160px;
-    background: linear-gradient(135deg, #1a0a00, #2d1200);
-    border: 1px solid rgba(255,77,0,0.4);
+    width: clamp(112px, 13vw, 160px); height: clamp(112px, 13vw, 160px);
+    z-index: 10;
+    background: radial-gradient(circle at 35% 30%, #ffd2a1 0 4%, #ff9147 16%, #b63812 42%, #190b09 76%);
+    border: 1px solid rgba(255, 174, 99, 0.8);
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     font-family: 'Bebas Neue', sans-serif;
     font-size: 3rem;
-    color: var(--accent);
-    clip-path: polygon(20% 0%, 80% 0%, 100% 20%, 100% 80%, 80% 100%, 20% 100%, 0% 80%, 0% 20%);
-    animation: pulse 3s ease-in-out infinite;
+    color: #fff4e7;
+    text-shadow: 0 0 8px #fff, 0 0 22px #ff9147, 0 0 42px #00d4ff;
+    box-shadow: 0 0 26px rgba(255, 77, 0, 0.9), 0 0 70px rgba(255, 145, 71, 0.55), 0 0 110px rgba(0, 212, 255, 0.25), inset 0 0 32px rgba(255,255,255,0.35);
+    animation: solar-pulse 3s ease-in-out infinite;
   }
-  @keyframes pulse {
-    0%, 100% { box-shadow: 0 0 60px rgba(255,77,0,0.2), inset 0 0 40px rgba(255,77,0,0.05); }
-    50% { box-shadow: 0 0 100px rgba(255,77,0,0.4), inset 0 0 60px rgba(255,77,0,0.1); }
+  @keyframes solar-pulse {
+    0%, 100% { filter: brightness(0.92); transform: translate(-50%, -50%) scale(0.98); }
+    50% { filter: brightness(1.18); transform: translate(-50%, -50%) scale(1.04); }
   }
 
   /* Stats Strip */
@@ -817,10 +839,11 @@
   </div>
   <div class="hero-visual">
     <div class="model-stage">
-      <div class="model-ring"></div>
-      <div class="model-ring"></div>
-      <div class="model-ring"></div>
+      <div class="model-ring solar-orbit" style="--orbit-radius: 50%;"><div class="planet-track"><span class="planet planet--orange planet--with-moon" data-speed="0.018" data-start="12"></span></div></div>
+      <div class="model-ring solar-orbit" style="--orbit-radius: 38%;"><div class="planet-track"><span class="planet planet--violet" data-speed="-0.012" data-start="145"></span></div></div>
+      <div class="model-ring solar-orbit" style="--orbit-radius: 26%;"><div class="planet-track"><span class="planet planet--small" data-speed="0.028" data-start="245"></span></div></div>
       <div class="model-core">3D</div>
+      <span class="star-particle" style="top:8%;left:17%;animation-delay:-.5s"></span><span class="star-particle" style="top:19%;left:82%;animation-delay:-2s"></span><span class="star-particle" style="top:32%;left:7%;animation-delay:-1.2s"></span><span class="star-particle" style="top:43%;left:94%;animation-delay:-3s"></span><span class="star-particle" style="top:66%;left:10%;animation-delay:-2.5s"></span><span class="star-particle" style="top:78%;left:83%;animation-delay:-.8s"></span><span class="star-particle" style="top:91%;left:30%;animation-delay:-1.9s"></span><span class="star-particle" style="top:11%;left:54%;animation-delay:-3.2s"></span><span class="star-particle" style="top:56%;left:88%;animation-delay:-1.5s"></span><span class="star-particle" style="top:86%;left:63%;animation-delay:-.2s"></span><span class="star-particle" style="top:28%;left:35%;animation-delay:-2.2s"></span><span class="star-particle" style="top:72%;left:44%;animation-delay:-3.4s"></span><span class="star-particle" style="top:4%;left:69%;animation-delay:-1s"></span><span class="star-particle" style="top:49%;left:3%;animation-delay:-2.8s"></span>
     </div>
   </div>
   <div class="stats-strip">
@@ -938,6 +961,35 @@
 {% for message in messages %}<div id="toast" class="toast show {{ message.tags }}" data-message="{{ message }}" data-type="{{ message.tags }}">{{ message }}</div>{% endfor %}
 
 <script src="{% static 'js/script.js' %}"></script>
+<script>
+  (() => {
+    const system = document.querySelector('.model-stage');
+    if (!system) return;
+    const planets = system.querySelectorAll('.planet');
+    const startTime = performance.now();
+    const animatePlanets = (now) => {
+      const elapsed = now - startTime;
+      planets.forEach((planet) => {
+        const angle = Number(planet.dataset.start || 0) + elapsed * Number(planet.dataset.speed || 0.0004);
+        const radians = angle * Math.PI / 180;
+        const depth = (Math.sin(radians) + 1) / 2;
+        const orbit = planet.closest('.solar-orbit');
+        const radius = orbit ? orbit.clientWidth / 2 : 0;
+        const x = Math.cos(radians) * radius;
+        const y = Math.sin(radians) * radius * 0.92;
+        const z = Math.sin(radians) * 34;
+        planet.style.setProperty('--planet-angle', `${angle}deg`);
+        planet.style.transform = `translate3d(${x}px, ${y}px, ${z}px) scale(${(0.82 + depth * 0.28).toFixed(2)})`;
+        planet.style.opacity = `${0.48 + depth * 0.52}`;
+        planet.style.zIndex = `${Math.round(depth * 8)}`;
+        planet.style.filter = `brightness(${0.72 + depth * 0.42})`;
+        planet.style.setProperty('--planet-scale', (0.82 + depth * 0.28).toFixed(2));
+      });
+      requestAnimationFrame(animatePlanets);
+    };
+    requestAnimationFrame(animatePlanets);
+  })();
+</script>
 <!--
   // Custom cursor
   const cursor = document.getElementById('cursor');
