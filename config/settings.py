@@ -12,7 +12,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 load_dotenv(BASE_DIR / ".env")
 
 
-
+'''
 
 import os
 
@@ -48,7 +48,7 @@ ALLOWED_HOSTS = [
     ).split(",")
     if host.strip()
 ]
-'''
+
 
 # --------------------------------------------------
 # APPLICATIONS
