@@ -2,23 +2,13 @@ import os
 from pathlib import Path
 from dotenv import load_dotenv
 
-
 # ==================================================
 # BASE DIRECTORY
 # ==================================================
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
-# ==================================================
-# LOAD ENVIRONMENT VARIABLES
-# ==================================================
-
-# Local development:
-# Loads variables from .env if the file exists.
-#
-# On Vercel:
-# Vercel Environment Variables will be used.
+# Load .env for local development
 load_dotenv(BASE_DIR / ".env")
 
 
@@ -28,25 +18,16 @@ load_dotenv(BASE_DIR / ".env")
 
 SECRET_KEY = os.environ.get(
     "SECRET_KEY",
-    "dev-only-change-this-secret-key"
+    "django-insecure-development-key-change-me"
 )
 
-
-# TEMPORARY:
-# Use DEBUG=True while diagnosing deployment errors.
-# After everything works, change Vercel DEBUG to False.
 DEBUG = os.environ.get(
     "DEBUG",
     "False"
-).lower() in {"1", "true", "yes"}
+).lower() in ("1", "true", "yes")
 
 
-# Django expects hostnames only.
-# Example:
-# jp3dhub-v1.vercel.app
-#
-# NOT:
-# https://jp3dhub-v1.vercel.app/
+# ALLOWED_HOSTS
 ALLOWED_HOSTS = [
     host.strip()
     for host in os.environ.get(
@@ -62,8 +43,6 @@ ALLOWED_HOSTS = [
 # ==================================================
 
 INSTALLED_APPS = [
-
-    # Django built-in applications
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -71,7 +50,6 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
 
-    # Your application
     "website",
 ]
 
@@ -81,19 +59,12 @@ INSTALLED_APPS = [
 # ==================================================
 
 MIDDLEWARE = [
-
     "django.middleware.security.SecurityMiddleware",
-
     "django.contrib.sessions.middleware.SessionMiddleware",
-
     "django.middleware.common.CommonMiddleware",
-
     "django.middleware.csrf.CsrfViewMiddleware",
-
     "django.contrib.auth.middleware.AuthenticationMiddleware",
-
     "django.contrib.messages.middleware.MessageMiddleware",
-
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
@@ -121,11 +92,8 @@ TEMPLATES = [
 
         "OPTIONS": {
             "context_processors": [
-
                 "django.template.context_processors.request",
-
                 "django.contrib.auth.context_processors.auth",
-
                 "django.contrib.messages.context_processors.messages",
             ],
         },
@@ -138,18 +106,15 @@ TEMPLATES = [
 # ==================================================
 
 WSGI_APPLICATION = "config.wsgi.application"
-
 ASGI_APPLICATION = "config.asgi.application"
 
 
 # ==================================================
-# DATABASE
-# SUPABASE POSTGRESQL
+# DATABASE - SUPABASE POSTGRESQL
 # ==================================================
 
 DATABASES = {
     "default": {
-
         "ENGINE": "django.db.backends.postgresql",
 
         "NAME": os.environ.get(
@@ -158,18 +123,15 @@ DATABASES = {
         ),
 
         "USER": os.environ.get(
-            "DB_USER",
-            ""
+            "DB_USER"
         ),
 
         "PASSWORD": os.environ.get(
-            "DB_PASSWORD",
-            ""
+            "DB_PASSWORD"
         ),
 
         "HOST": os.environ.get(
-            "DB_HOST",
-            ""
+            "DB_HOST"
         ),
 
         "PORT": os.environ.get(
@@ -177,7 +139,6 @@ DATABASES = {
             "5432"
         ),
 
-        # Keep database connections alive
         "CONN_MAX_AGE": 60,
 
         "OPTIONS": {
@@ -192,33 +153,28 @@ DATABASES = {
 # ==================================================
 
 AUTH_PASSWORD_VALIDATORS = [
-
     {
-        "NAME": (
+        "NAME":
             "django.contrib.auth.password_validation."
-            "UserAttributeSimilarityValidator"
-        ),
+            "UserAttributeSimilarityValidator",
     },
 
     {
-        "NAME": (
+        "NAME":
             "django.contrib.auth.password_validation."
-            "MinimumLengthValidator"
-        ),
+            "MinimumLengthValidator",
     },
 
     {
-        "NAME": (
+        "NAME":
             "django.contrib.auth.password_validation."
-            "CommonPasswordValidator"
-        ),
+            "CommonPasswordValidator",
     },
 
     {
-        "NAME": (
+        "NAME":
             "django.contrib.auth.password_validation."
-            "NumericPasswordValidator"
-        ),
+            "NumericPasswordValidator",
     },
 ]
 
@@ -280,19 +236,14 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 if not DEBUG:
 
-    # Prevent browsers from MIME-sniffing responses
     SECURE_CONTENT_TYPE_NOSNIFF = True
 
-    # Secure session cookie
     SESSION_COOKIE_SECURE = True
 
-    # Secure CSRF cookie
     CSRF_COOKIE_SECURE = True
 
-    # Prevent clickjacking
     X_FRAME_OPTIONS = "DENY"
 
-    # HSTS
     SECURE_HSTS_SECONDS = 31536000
 
     SECURE_HSTS_INCLUDE_SUBDOMAINS = True
